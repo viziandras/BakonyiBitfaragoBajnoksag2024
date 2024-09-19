@@ -127,6 +127,17 @@
     background-color: #641414;
 }
 
+.digital__in {
+    background: #7a212170;
+    color: white;
+    position: relative;
+    top: -40%;
+    font-family: 'Digital Numbers', sans-serif;
+    border: 2px solid  rgb(237, 215, 215);
+    width: 110px;
+    margin: auto;
+}
+
 .digital {
     display: none;
 }
@@ -144,26 +155,8 @@
         max-width: 640px;
     }
 
-    .header__menu {
-        display: block !important;
-    }
-
-    .clock {
-        display: none;    
-    }
-
-    .digital {
-        font-family: 'Digital Numbers', sans-serif;
-        display: block !important;
-        background: #cd3232;
-        color: white;
-        font-size: 1rem;
-        width: 200px;
-        margin: 1rem;
-        padding: 0.5rem;
-        text-align: center;
-        border: 2px solid black;
-        border-radius: 20px;
+    .header {
+        padding-right: 0px !important;
     }
 }
 
@@ -173,8 +166,8 @@
         max-width: 768px;
     }
 
-    .header__link {
-        font-size: 1.1rem;;
+    .header {
+        padding-right: 20px;
     }
 }
 
@@ -198,16 +191,18 @@
         width: 100%;
         background-color: var(--color-dark-red-b-o);
         text-align: center;
-        display: flex;
+        display: block;
         justify-content: space-between;
         position: absolute;
         padding: 2rem;
         padding-left: 3rem;
         padding-right: 3rem;
+        padding-top: 150px;
         line-height: 5.5rem;
         top: 180px;
         left: -100%;
         transition: ease-in-out 1s;
+        z-index: -1;
     }
 
     .header__title {

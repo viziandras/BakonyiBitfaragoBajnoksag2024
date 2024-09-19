@@ -51,6 +51,9 @@ function showTime() {
  
     // Displaying the time
     document.getElementById(
-        "digital"
+        "digital1"
+    ).innerHTML = currentTime;
+    document.getElementById(
+        "digital2"
     ).innerHTML = currentTime;
 }
