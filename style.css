@@ -1,0 +1,19 @@
+:root {
+    --color-dark-red: #500b0b;
+    --color-dark-red-b: #640d0d;
+    --color-dark-red-b-o: #640d0d77;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Ranade', sans-serif !important;
+}
