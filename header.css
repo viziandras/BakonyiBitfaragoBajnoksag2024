@@ -57,7 +57,7 @@
     display: none;
 }
 
-.header__menu__icon svg{
+.header__menu__icon img{
     width: 3rem;
     color: black;
 }
@@ -66,8 +66,10 @@
     left: 0 !important;
 }
 
-
-
+.dropdown {
+    background: none;
+    border: none;
+}
 
 .clock{
     background: #cd3232;
@@ -197,7 +199,7 @@
         padding: 2rem;
         padding-left: 3rem;
         padding-right: 3rem;
-        padding-top: 150px;
+        padding-top: 160px;
         line-height: 5.5rem;
         top: 180px;
         left: -100%;
