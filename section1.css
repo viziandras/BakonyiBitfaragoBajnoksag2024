@@ -1,0 +1,62 @@
+.container2 {
+    width: 1600px !important;
+    margin: auto;
+}
+
+.cards {
+    margin-top: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    color: white;
+    background-color: var(--color-card) !important;
+    width: 400px;
+    height: 600px;
+    border: 1.4rem solid var(--color-card) !important;
+    border-radius: 20px !important;
+}
+
+.card__name {
+    font-variant: small-caps;
+    padding: 1rem 0rem;
+    font-weight: 600;
+}
+
+.card__info {
+    margin: 0;
+    padding-bottom: 0.7rem;
+}
+
+.card__school {
+    font-size: 0.8rem;
+}
+
+.cards2 {
+    margin-top: 200px;
+    margin-bottom: 200px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.aboutme {
+    margin: auto;
+    width: 200px;
+    background-color: white;
+    margin-top: 1rem;
+    height: 50px;
+    font-weight: 600;
+    border: none;
+    box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.415);
+}
+
+.aboutme:active {
+    border: 2px solid black;
+}
+
+#blanka, #andras, #dominik {
+    display: none;
+    background-color: var(--color-card);
+    margin: 1rem 0rem;
+}

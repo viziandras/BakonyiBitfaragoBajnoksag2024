@@ -57,3 +57,42 @@ function showTime() {
         "digital2"
     ).innerHTML = currentTime;
 }
+
+function showAboutBlanka() {
+    let blanka = document.getElementById("blanka")
+
+    if (blanka.style.display === "block") {
+        blanka.style.display = "none";
+        document.getElementById('card1').style.height='600px';
+
+      } else {
+        blanka.style.display = "block";
+        document.getElementById('card1').style.height='720px';
+      }
+}
+
+function showAboutAndras() {
+    let blanka = document.getElementById("andras")
+
+    if (blanka.style.display === "block") {
+        blanka.style.display = "none";
+        document.getElementById('card2').style.height='600px';
+
+      } else {
+        blanka.style.display = "block";
+        document.getElementById('card2').style.height='720px';
+      }
+}
+
+function showAboutDominik() {
+    let blanka = document.getElementById("dominik")
+
+    if (blanka.style.display === "block") {
+        blanka.style.display = "none";
+        document.getElementById('card3').style.height='600px';
+
+      } else {
+        blanka.style.display = "block";
+        document.getElementById('card3').style.height='720px';
+      }
+}

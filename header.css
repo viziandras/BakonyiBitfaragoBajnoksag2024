@@ -48,8 +48,8 @@
 .header__link:hover {
     list-style-type: none;
     text-transform: uppercase;
-    color: rgba(251, 244, 244, 0.704);
     text-underline-offset: 0.3rem;
+    color: white;
     transition: all 0.3s ease-in-out;
 }
 
@@ -59,7 +59,6 @@
 
 .header__menu__icon img{
     width: 3rem;
-    color: black;
 }
 
 .header__open{
@@ -72,7 +71,7 @@
 }
 
 .clock{
-    background: #cd3232;
+    background: var(--color-light-red);
     height: 280px;
     width: 280px;
     position: absolute;
@@ -148,6 +147,32 @@
 @media (max-width: 475px) {
     .container {
         max-width: 475px;
+    }
+
+    .clock {
+        width: 230px;
+        height: 230px;
+    }
+
+    .clock__background {
+        width: 230px;
+        height: 230px;
+    }
+
+    .hour{
+        top: 55px
+    }
+
+    .minute{
+        top: 35px;
+    }
+
+    .seconds{
+        top: 25px;
+    }
+
+    .header__menu__icon img{
+        width: 2rem;
     }
 }
 
