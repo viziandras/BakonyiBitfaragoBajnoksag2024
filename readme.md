@@ -1,0 +1,1 @@
+Weboldal: [text](https://viziandras.github.io/BakonyiBitfaragoBajnoksag2024/)
