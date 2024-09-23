@@ -1,1 +1,1 @@
-Weboldal: [text](https://viziandras.github.io/BakonyiBitfaragoBajnoksag2024/)
+Weboldal: [https://viziandras.github.io/BakonyiBitfaragoBajnoksag2024/](https://viziandras.github.io/BakonyiBitfaragoBajnoksag2024/)
