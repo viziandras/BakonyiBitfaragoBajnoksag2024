@@ -1,5 +1,5 @@
 .container2 {
-    width: 1600px !important;
+    max-width: 1600px !important;
     margin: auto;
 }
 
@@ -59,4 +59,51 @@
     display: none;
     background-color: var(--color-card);
     margin: 1rem 0rem;
+}
+
+
+/* xs */
+@media (max-width: 475px) {
+    .container {
+        max-width: 475px;
+    }
+}
+
+/* sm */
+@media (max-width: 640px) {
+    .container {
+        max-width: 640px;
+    }
+}
+
+/* md */
+@media (max-width: 768px) {
+    .container {
+        max-width: 768px;
+    }
+}
+
+/* lg */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 1024px;
+    }
+
+    .cards {
+        margin-top: 500px;
+    }
+}
+
+/* xl */
+@media (max-width: 1280px) {
+    .container {
+        max-width: 1280px;
+    }
+}
+
+/* 2xl */
+@media (max-width: 1536px) {
+    .container {
+        max-width: 1536px;
+    }
 }
