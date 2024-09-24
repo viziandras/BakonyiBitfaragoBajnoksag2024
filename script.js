@@ -96,3 +96,27 @@ function showAboutDominik() {
         document.getElementById('card3').style.height='720px';
       }
 }
+
+
+
+let images = ["img/preview16.jpg", "img/red-desert-landscape.jpg", "img/red-sunset-on-tasmanian-farm-.jpg"];
+let i = -1;
+
+function changeImage() {
+    i = (i + 1) % images.length;
+    const imageElement = document.getElementById("image");
+    imageElement.src = images[i];
+    imageElement.style.display = "block";
+    document.getElementById("number").innerHTML = (i + 1) + "/3"
+}
+
+function resetImage() {
+    const imageElement = document.getElementById("image");
+    imageElement.style.display = "none";
+    i = -1
+    document.getElementById("number").innerHTML = ""
+}
+
+function scrollToTop() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
