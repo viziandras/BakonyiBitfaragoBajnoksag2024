@@ -67,6 +67,14 @@
     .container {
         max-width: 475px;
     }
+
+    .card {
+        width: 350px;
+    }
+
+    .card__name {
+        font-size: 1.9rem;
+    }
 }
 
 /* sm */
@@ -88,16 +96,31 @@
     .container {
         max-width: 1024px;
     }
-
-    .cards {
-        margin-top: 500px;
-    }
 }
 
 /* xl */
 @media (max-width: 1280px) {
     .container {
         max-width: 1280px;
+    }
+    
+    .cards {
+        margin-top: 400px;
+    }
+
+    .cards2 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #card3.card{
+        margin: 50px 0px;  
+    }
+    #card1.card{
+        margin: 50px 0px;
+    }
+    #card2.card{
+        margin: 50px 0px;
     }
 }
 

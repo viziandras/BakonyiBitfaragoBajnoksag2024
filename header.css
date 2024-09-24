@@ -83,6 +83,7 @@
     border: 15px solid var(--color-dark-red);
     box-shadow: 15px 15px 35px rgba(0,0,0,0.2),
     inset 0 0 30px rgba(0,0,0,0.4);
+    z-index: 1;
 }
 
 .clock__background {
@@ -229,7 +230,6 @@
         top: 180px;
         left: -100%;
         transition: ease-in-out 1s;
-        z-index: -1;
     }
 
     .header__title {
