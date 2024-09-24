@@ -34,6 +34,7 @@
 }
 
 #reset__button {
+    background-color: white;
     position: absolute;
     left: 62%;
     width: 80px;
@@ -73,4 +74,87 @@
 
 #image {
     display: none;
+}
+
+/* xs */
+@media (max-width: 475px) {
+    .container {
+        max-width: 475px;
+    }
+}
+
+/* picture */
+@media (max-width: 560px) {
+    .picture img {
+        width: 350px !important;
+        max-height: 200px !important;
+    }
+}
+
+/* sm */
+@media (max-width: 640px) {
+    .container {
+        max-width: 640px;
+    }
+}
+
+/* md */
+@media (max-width: 768px) {
+    .container {
+        max-width: 768px;
+    }
+}
+
+/* picture */
+@media (max-width: 780px) {
+    .picture img {
+        max-width: 550px;
+        max-height: 300px;
+    }
+}
+
+/* lg */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 1024px;
+    }
+}
+
+/* picture */
+@media (max-width: 1100px) {
+    .picture img {
+        width: 768px;
+        height: 520px;
+    }
+}
+
+/* xl */
+@media (max-width: 1280px) {
+    .container {
+        max-width: 1280px;
+    }
+
+    #reset__button {
+        top: 4050px !important;
+    }
+}
+
+/* reset gomb */
+@media (max-width: 1685px) {
+    #reset__button {
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 2550px;
+    }
+
+    .pictures {
+        padding-top: 50px;
+    }
+}
+
+/* 2xl */
+@media (max-width: 1536px) {
+    .container {
+        max-width: 1536px;
+    }
 }
