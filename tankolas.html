@@ -1,51 +1,110 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mezei Nyomógombok</title>
-        <script src="script.js" defer></script>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="header.css">
-        <link rel="stylesheet" href="utilities.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-        <link href="https://fonts.cdnfonts.com/css/digital-numbers" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-        <link href="https://api.fontshare.com/v2/css?f[]=ranade@300,400,500,700&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <header class="container-fluid header__color">
-            <nav class="header">
-                <div>
-                    <a href="#" class="header__title">Mezei Nyomógombok</a>
-                </div>
-                <div class="clock">
-                    <img src="img/ora_hatter.png" alt="ora" class="clock__background">
-                    <div class="hour hand" id="hour"></div>
-                    <div class="minute hand" id="minute"></div>
-                    <div class="seconds hand" id="seconds"></div>
-                    <div class="dot"></div>
-                    <div class="digital__in" id="digital2"></div>
-                </div>
-                <div class="digital" id="digital1"></div>
-                <div>
-                    <ul class="header__menu">
-                        <li>
-                            <a href="index.html" class="header__link">Főoldal</a>
-                        </li>
-                        <li>
-                            <a href="#" class="header__link">Tankolás</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="header__menu__icon">
-                    <button class="dropdown">
-                        <img src="img/lista.png" alt="lista">
-                    </button>        
-                </div>
-            </nav>
-        </header>
-    </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mezei Nyomógombok</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="utilities.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link href="https://fonts.cdnfonts.com/css/digital-numbers" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=ranade@300,400,500,700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="container-fluid header__color">
+        <nav class="header">
+            <div>
+                <a href="#" class="header__title">Mezei Nyomógombok</a>
+            </div>
+            <div class="clock">
+                <img src="img/ora_hatter.png" alt="ora" class="clock__background">
+                <div class="hour hand" id="hour"></div>
+                <div class="minute hand" id="minute"></div>
+                <div class="seconds hand" id="seconds"></div>
+                <div class="dot"></div>
+                <div class="digital__in" id="digital2"></div>
+            </div>
+            <div class="digital" id="digital1"></div>
+            <div>
+                <ul class="header__menu">
+                    <li>
+                        <a href="index.html" class="header__link">Főoldal</a>
+                    </li>
+                    <li>
+                        <a href="#" class="header__link">Tankolás</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="header__menu__icon">
+                <button class="dropdown">
+                    <img src="img/lista.png" alt="lista">
+                </button>
+            </div>
+        </nav>
+    </header>
+    <form id="tankolas" action="">
+        <label for="datum">Tankolás dátuma:</label>
+        <input type="date" id="datum" name="datum">
+        <br>
+        <label for="number">Tankolás mennyisége (literben):</label>
+        <input type="number" name="mennyiseg" id="mennyiseg">
+        <br>
+        <label for="number">Fizetett összeg:</label>
+        <input type="number" name="osszeg" id="osszeg">
+        <br>
+        <label for="number">Kilométeróra:</label>
+        <input type="number" name="kmora" id="kmora">
+        <br>
+        <input type="button" name="button" value="Beküldés" onClick="tankolas()">
+    </form>
+    <div id="output"></div>
+    <script>
+        let tankolasok = [];
+
+        function tankolasobject(datum, mennyiseg, osszeg, kmora) {
+            this.datum = datum;
+            this.mennyiseg = mennyiseg;
+            this.osszeg = osszeg;
+            this.kmora = kmora;
+        }
+
+        function tankolas() {
+            let tank = new tankolasobject(
+                document.getElementById("datum").value,
+                document.getElementById("mennyiseg").value,
+                document.getElementById("osszeg").value,
+                document.getElementById("kmora").value,
+            );
+            tankolasok.push(tank);
+            displayTankolasok();
+        }
+
+        function displayTankolasok() {
+            const outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = ''; // Clear previous output
+            tankolasok.forEach((t, index) => {
+                outputDiv.innerHTML += `
+                    <div class="border p-2 mb-2">
+                        <strong>${index + 1}. Tankolás:</strong><br>
+                        Dátum: ${t.datum}<br>
+                        Mennyiség: ${t.mennyiseg} liter<br>
+                        Összeg: ${t.osszeg} Ft<br>
+                        Kilométeróra: ${t.kmora} km<br>
+                    </div>
+                `;
+            });
+        }
+
+
+
+    </script>
+</body>
+
 </html>
