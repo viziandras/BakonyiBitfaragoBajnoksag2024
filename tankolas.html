@@ -64,7 +64,9 @@
         <br>
         <input type="button" name="button" value="Beküldés" onClick="tankolas()">
     </form>
+    <input type="button" name="button" value="Hónapok" onClick="honap()">
     <div id="output"></div>
+    <div id="h_ossz"></div>
     <script>
         let tankolasok = [];
 
@@ -76,22 +78,26 @@
         }
 
         function tankolas() {
-            let tank = new tankolasobject(
-                document.getElementById("datum").value,
-                document.getElementById("mennyiseg").value,
-                document.getElementById("osszeg").value,
-                document.getElementById("kmora").value,
-            );
-            tankolasok.push(tank);
-            displayTankolasok();
+            const datum = document.getElementById("datum").value;
+            const mennyiseg = document.getElementById("mennyiseg").value;
+            const osszeg = document.getElementById("osszeg").value;
+            const kmora = document.getElementById("kmora").value;
+
+            if (datum && mennyiseg && osszeg && kmora) {
+                let tank = new tankolasobject(datum, mennyiseg, osszeg, kmora);
+                tankolasok.push(tank);
+                displayTankolasok();
+            } else {
+                alert("Kérjük töltse ki az összes mezőt!")
+            }
         }
 
         function displayTankolasok() {
             const outputDiv = document.getElementById("output");
-            outputDiv.innerHTML = ''; // Clear previous output
+            outputDiv.innerHTML = '';
             tankolasok.forEach((t, index) => {
                 outputDiv.innerHTML += `
-                    <div class="border p-2 mb-2">
+                    <div>
                         <strong>${index + 1}. Tankolás:</strong><br>
                         Dátum: ${t.datum}<br>
                         Mennyiség: ${t.mennyiseg} liter<br>
@@ -102,8 +108,38 @@
             });
         }
 
+        let honapok = [];
 
+        function honapokobject(honap, osszeg) {
+            this.honap = honap;
+            this.osszeg = osszeg;
+        }
 
+        function honap() {
+            honapok = [];
+            for (let index = 0; index < 12; index++) {
+                let h_ossz = new honapokobject(index + 1, 0);
+                honapok.push(h_ossz);
+            };
+            tankolasok.forEach((t) => {
+                let h = new Date(t.datum).getMonth();
+                honapok[h].osszeg += Number(t.osszeg);
+            });
+            displayhonap();
+        }
+
+        function displayhonap() {
+            const outputh_oszz = document.getElementById("h_ossz");
+            outputh_oszz.innerHTML = '';
+            honapok.forEach((h, i) => {
+                outputh_oszz.innerHTML += `
+                    <div>
+                        Hónap: ${h.honap}<br>
+                        Összeg: ${h.osszeg} Ft<br>    
+                    </div>
+                `;
+            });
+        }
     </script>
 </body>
 
