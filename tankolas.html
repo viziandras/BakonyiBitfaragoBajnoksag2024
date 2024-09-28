@@ -83,8 +83,10 @@
     <br>
     <h5 id="szures_e"></h5>
     <div id="output_szures"></div>
-    <h3>e feladat</h3>
-    <div id="output_rangsor"></div>
+    <h3>Osztálybeli különbség</h3>
+    <div id="output_klb"></div>
+    <div id="output_kiiras"></div>
+    <div id="output_fogy"></div>
     <script defer>
         //Feladat A része
         let tankolasok = [];
@@ -107,6 +109,9 @@
                 tankolasok.push(tank);
                 displayTankolasok();
                 honap();
+                if (tankolasok.length >= 2) {
+                    kulonbseg();
+                }
             } else {
                 alert("Kérjük töltse ki az összes mezőt!");
             }
@@ -151,11 +156,19 @@
 
         function displayhonap() {
             const outputh_oszz = document.getElementById("h_ossz");
+            let hav = '';
             outputh_oszz.innerHTML = '';
             honapok.forEach((h, i) => {
+                if (h.honap == '01') {
+                    hav = 'Január';
+                } else if (h.honap == '02') {
+                    hav = 'Február';
+                } else if (h.honap == '03') {
+                    hav = 'Március';
+                }
                 outputh_oszz.innerHTML += `
                     <div>
-                        Hónap: ${h.honap}<br>
+                        ${hav}<br>
                         Összeg: ${h.osszeg} Ft<br>    
                     </div>
                 `;
@@ -199,7 +212,52 @@
         }
 
         //Feladat E része
-        function rangsorolas() {
+        let rangsor = [];
+        let rangsor_2 = [];
+
+        function rangsorobject(km, uzemanyag, fogy) {
+            this.km = km;
+            this.uzemanyag = uzemanyag;
+            this.fogy = fogy;
+        }
+
+        function kulonbseg() {
+            rangsor = [];
+            let klb_km = 0;
+            let f_uzemanyag = 0;
+            let fogya = 0;
+            for (let i = 0; i < tankolasok.length - 1; i++) {
+                klb_km = tankolasok[i + 1].kmora - tankolasok[i].kmora;
+                f_uzemanyag = tankolasok[i + 1].mennyiseg;
+                fogya = (f_uzemanyag / klb_km) * 100;
+                rangsor.push(new rangsorobject(klb_km, f_uzemanyag, fogya));
+            }
+
+            const outklb = document.getElementById("output_klb");
+            outklb.innerHTML = '';
+            rangsor.forEach((e) => {
+                outklb.innerHTML += `
+                    <div>
+                        <strong>Különbség:</strong><br>
+                        Kilométer: ${e.km}<br>
+                        Fogyasztás: ${e.uzemanyag} liter<br>
+                    </div>
+                `;
+            });
+            document.getElementById("output_kiiras").innerHTML = '<h5><strong>Rangsor:</strong></h5>'
+            rangsor_2 = rangsor.sort(function (a, b) { return a.fogy - b.fogy });
+            const outrang = document.getElementById("output_fogy");
+            outrang.innerHTML = '';
+            rangsor_2.forEach((e, i) => {
+                outrang.innerHTML += `
+                    <div>
+                        ${i + 1}.<br>
+                        Kilométer: ${e.km}<br>
+                        Fogyasztás: ${e.uzemanyag} liter<br>
+                        Átlagfogyasztás: ${e.fogy.toFixed(2)} l/100km<br>
+                    </div>
+                `;
+            });
         }
     </script>
 </body>
