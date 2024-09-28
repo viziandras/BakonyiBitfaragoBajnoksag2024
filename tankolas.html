@@ -60,22 +60,22 @@
         <label for="number">Fizetett összeg:</label>
         <input type="number" name="osszeg" id="osszeg">
         <br>
-        <label for="number">Kilométeróra:</label>
+        <label for="number">Kilométeróra állása:</label>
         <input type="number" name="kmora" id="kmora">
         <br>
         <input type="button" name="button" value="Beküldés" onClick="tankolas()">
     </form>
     <div id="output"></div>
     <br>
-    <h3>Hónapokra lebontás</h3>
+    <h3>Költség hónapokra lebontva</h3>
     <div id="h_ossz"></div>
     <br>
     <h3>Szűrés</h3>
     <form action="">
-        <label for="datum_1">1.dátum:</label>
+        <label for="datum_1">1.dátum (-tól):</label>
         <input type="date" id="datum_1" name="datum_1">
         <br>
-        <label for="datum_2">2.dátum:</label>
+        <label for="datum_2">2.dátum (-ig):</label>
         <input type="date" id="datum_2" name="datum_2">
         <br>
         <input type="button" name="button" value="Szűrés" onClick="szures()">
@@ -83,6 +83,8 @@
     <br>
     <h5 id="szures_e"></h5>
     <div id="output_szures"></div>
+    <h3>e feladat</h3>
+    <div id="output_rangsor"></div>
     <script defer>
         //Feladat A része
         let tankolasok = [];
@@ -116,7 +118,7 @@
             tankolasok.forEach((t, index) => {
                 outputDiv.innerHTML += `
                     <div>
-                        <strong>${index + 1}. Tankolás:</strong><br>
+                        <strong>Tankolás:</strong><br>
                         Dátum: ${t.datum}<br>
                         Mennyiség: ${t.mennyiseg} liter<br>
                         Összeg: ${t.osszeg} Ft<br>
@@ -194,6 +196,10 @@
             } else {
                 alert("Kérjük töltse ki az összes mezőt!");
             }
+        }
+
+        //Feladat E része
+        function rangsorolas() {
         }
     </script>
 </body>
