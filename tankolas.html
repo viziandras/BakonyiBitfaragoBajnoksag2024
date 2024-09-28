@@ -17,7 +17,7 @@
     <link href="https://api.fontshare.com/v2/css?f[]=ranade@300,400,500,700&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body onload="honap()">
     <header class="container-fluid header__color">
         <nav class="header">
             <div>
@@ -49,6 +49,7 @@
             </div>
         </nav>
     </header>
+    <h3>Tankolás rögzítése</h3>
     <form id="tankolas" action="">
         <label for="datum">Tankolás dátuma:</label>
         <input type="date" id="datum" name="datum">
@@ -64,10 +65,26 @@
         <br>
         <input type="button" name="button" value="Beküldés" onClick="tankolas()">
     </form>
-    <input type="button" name="button" value="Hónapok" onClick="honap()">
     <div id="output"></div>
+    <br>
+    <h3>Hónapokra lebontás</h3>
     <div id="h_ossz"></div>
+    <br>
+    <h3>Szűrés</h3>
+    <form action="">
+        <label for="datum_1">1.dátum:</label>
+        <input type="date" id="datum_1" name="datum_1">
+        <br>
+        <label for="datum_2">2.dátum:</label>
+        <input type="date" id="datum_2" name="datum_2">
+        <br>
+        <input type="button" name="button" value="Szűrés" onClick="szures()">
+    </form>
+    <br>
+    <h5 id="szures_e"></h5>
+    <div id="output_szures"></div>
     <script defer>
+        //Feladat A része
         let tankolasok = [];
 
         function tankolasobject(datum, mennyiseg, osszeg, kmora) {
@@ -87,8 +104,9 @@
                 let tank = new tankolasobject(datum, mennyiseg, osszeg, kmora);
                 tankolasok.push(tank);
                 displayTankolasok();
+                honap();
             } else {
-                alert("Kérjük töltse ki az összes mezőt!")
+                alert("Kérjük töltse ki az összes mezőt!");
             }
         }
 
@@ -108,6 +126,7 @@
             });
         }
 
+        //feladat B része
         let honapok = [];
 
         function honapokobject(honap, osszeg) {
@@ -139,6 +158,42 @@
                     </div>
                 `;
             });
+        }
+
+        //Feladat C része
+        let szuresek = [];
+
+        function szures() {
+            const datum_1 = document.getElementById("datum_1").value;
+            const datum_2 = document.getElementById("datum_2").value;
+
+            if (datum_1 > datum_2) {
+                alert("Fordítva adta meg a dátumokat, kérem cserélje meg őket!")
+            }
+            else if (datum_1 && datum_2) {
+                tankolasok.forEach((t, i) => {
+                    if (t.datum >= datum_1 && t.datum <= datum_2) {
+                        szuresek.push(t)
+                    }
+                });
+                const output_szures = document.getElementById("output_szures");
+                const szures_e = document.getElementById("szures_e");
+                szures_e.innerHTML = 'Szűrés eredménye:'
+                output_szures.innerHTML = '';
+                szuresek.forEach((sz) => {
+                    output_szures.innerHTML += `
+                    <div>
+                        <strong>Tankolás:</strong><br>
+                        Dátum: ${sz.datum}<br>
+                        Mennyiség: ${sz.mennyiseg} liter<br>
+                        Összeg: ${sz.osszeg} Ft<br>
+                        Kilométeróra: ${sz.kmora} km<br>
+                    </div>
+                `;
+                });
+            } else {
+                alert("Kérjük töltse ki az összes mezőt!");
+            }
         }
     </script>
 </body>
