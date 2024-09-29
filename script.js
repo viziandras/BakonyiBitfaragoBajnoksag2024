@@ -29,9 +29,7 @@ let set_clock = setInterval(() => {
 
 setInterval(showTime, 1000);
  
-// Defining showTime funcion
 function showTime() {
-    // Getting current time and date
     let time = new Date();
     let hour = time.getHours();
     let min = time.getMinutes();
@@ -49,7 +47,6 @@ function showTime() {
         ":" +
         sec;
  
-    // Displaying the time
     document.getElementById(
         "digital1"
     ).innerHTML = currentTime;
