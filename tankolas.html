@@ -8,6 +8,7 @@
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="tankolas_a.css">
     <link rel="stylesheet" href="utilities.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link href="https://fonts.cdnfonts.com/css/digital-numbers" rel="stylesheet">
@@ -18,6 +19,11 @@
 </head>
 
 <body onload="honap()">
+    <button class="to__top__button" onclick="scrollToTop()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+        </svg>
+    </button>
     <header class="container-fluid header__color">
         <nav class="header">
             <div>
@@ -49,44 +55,69 @@
             </div>
         </nav>
     </header>
-    <h3>Tankolás rögzítése</h3>
-    <form id="tankolas" action="">
-        <label for="datum">Tankolás dátuma:</label>
-        <input type="date" id="datum" name="datum">
-        <br>
-        <label for="number">Tankolás mennyisége (literben):</label>
-        <input type="number" name="mennyiseg" id="mennyiseg">
-        <br>
-        <label for="number">Fizetett összeg:</label>
-        <input type="number" name="osszeg" id="osszeg">
-        <br>
-        <label for="number">Kilométeróra állása:</label>
-        <input type="number" name="kmora" id="kmora">
-        <br>
-        <input type="button" name="button" value="Beküldés" onClick="tankolas()">
-    </form>
-    <div id="output"></div>
+
+    <div class="container tankolas__a__">
+        <h3 class="a__title">Tankolás rögzítése</h3>
+        <div class="tankolas__a">
+            <form id="tankolas" action="">
+                <div class="form__row">
+                    <label for="datum">Tankolás dátuma:</label>
+                    <input type="date" id="datum" name="datum">
+                </div>
+                <div class="form__row">
+                    <label for="number">Tankolás mennyisége (literben):</label>
+                    <input type="number" name="mennyiseg" id="mennyiseg">
+                </div>
+                <div class="form__row">
+                    <label for="number">Fizetett összeg:</label>
+                    <input type="number" name="osszeg" id="osszeg">
+                </div>
+                <div class="form__row">
+                    <label for="number">Kilométeróra állása:</label>
+                    <input type="number" name="kmora" id="kmora">
+                </div>
+                <div class="button__"><input type="button" name="button" value="Beküldés" onClick="tankolas()" class="button__1"></div>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <div id="tankol__d">
+            <div class="tankolasok__display" id="output"></div>
+        </div>
+    </div>
+    <div class="container koltseg">
+        <h3 class="a__title">Költség hónapokra lebontva</h3>
+        <div class="koltseg__" id="h_ossz"></div>
+    </div>
+    <div class="container szures">
+        <h3 class="a__title">Szűrés</h3>
+        <div class="szures__">
+            <form action="">
+            <div class="form__row">
+                <label for="datum_1">1.dátum (-tól):</label>
+                <input type="date" id="datum_1" name="datum_1">
+            </div>
+            <div class="form__row">
+                <label for="datum_2">2.dátum (-ig):</label>
+                <input type="date" id="datum_2" name="datum_2">
+            </div>
+            <div class="button__"><input type="button" name="button" value="Szűrés" onClick="szures()" class="button__1"></div>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <h5 class="a__title" id="szures_e"></h5>
+        <div class="szures__display" id="output_szures"></div>
+    </div>
     <br>
-    <h3>Költség hónapokra lebontva</h3>
-    <div id="h_ossz"></div>
-    <br>
-    <h3>Szűrés</h3>
-    <form action="">
-        <label for="datum_1">1.dátum (-tól):</label>
-        <input type="date" id="datum_1" name="datum_1">
-        <br>
-        <label for="datum_2">2.dátum (-ig):</label>
-        <input type="date" id="datum_2" name="datum_2">
-        <br>
-        <input type="button" name="button" value="Szűrés" onClick="szures()">
-    </form>
-    <br>
-    <h5 id="szures_e"></h5>
-    <div id="output_szures"></div>
-    <h3>Osztálybeli különbség</h3>
-    <div id="output_klb"></div>
-    <div id="output_kiiras"></div>
-    <div id="output_fogy"></div>
+    <h3 class="a__title" id="kul_title"></h3>
+    <div class="container kulonbseg">
+        <div class="kulonbseg__" id="output_klb"></div>
+    </div>
+    <div class="container atl__fogy__">
+        <div class="a__title2" id="output_kiiras"></div>
+        <div class="rangsorolas" id="output_fogy"></div>
+    </div>
     <script defer>
         //Feladat A része
         let tankolasok = [];
@@ -119,11 +150,12 @@
 
         function displayTankolasok() {
             const outputDiv = document.getElementById("output");
+            document.getElementById("tankol__d").style.display = "block";
             outputDiv.innerHTML = '';
             tankolasok.forEach((t, index) => {
                 outputDiv.innerHTML += `
                     <div>
-                        <strong>Tankolás:</strong><br>
+                        <strong>${index + 1}. Tankolás:</strong><br>
                         Dátum: ${t.datum}<br>
                         Mennyiség: ${t.mennyiseg} liter<br>
                         Összeg: ${t.osszeg} Ft<br>
@@ -165,10 +197,28 @@
                     hav = 'Február';
                 } else if (h.honap == '03') {
                     hav = 'Március';
+                } else if (h.honap == '04') {
+                    hav = 'Április';
+                } else if (h.honap == '05') {
+                    hav = 'Május';
+                } else if (h.honap == '06') {
+                    hav = 'Június';
+                } else if (h.honap == '07') {
+                    hav = 'Július';
+                } else if (h.honap == '08') {
+                    hav = 'Augusztus';
+                } else if (h.honap == '09') {
+                    hav = 'Szeptember';
+                } else if (h.honap == '10') {
+                    hav = 'Október';
+                } else if (h.honap == '11') {
+                    hav = 'November';
+                } else if (h.honap == '12') {
+                    hav = 'December';
                 }
                 outputh_oszz.innerHTML += `
                     <div>
-                        ${hav}<br>
+                        <span class="honapok">${hav}</span><br>
                         Összeg: ${h.osszeg} Ft<br>    
                     </div>
                 `;
@@ -181,6 +231,7 @@
         function szures() {
             const datum_1 = document.getElementById("datum_1").value;
             const datum_2 = document.getElementById("datum_2").value;
+            szuresek = [];
 
             if (datum_1 > datum_2) {
                 alert("Fordítva adta meg a dátumokat, kérem cserélje meg őket!")
@@ -234,6 +285,7 @@
             }
 
             const outklb = document.getElementById("output_klb");
+            kul_title.innerHTML = 'Megtett kilométer és fogyasztás'
             outklb.innerHTML = '';
             rangsor.forEach((e) => {
                 outklb.innerHTML += `
@@ -244,17 +296,21 @@
                     </div>
                 `;
             });
-            document.getElementById("output_kiiras").innerHTML = '<h5><strong>Rangsor:</strong></h5>'
             rangsor_2 = rangsor.sort(function (a, b) { return a.fogy - b.fogy });
             const outrang = document.getElementById("output_fogy");
+            output_kiiras.innerHTML = 'Rangsorolás'
             outrang.innerHTML = '';
             rangsor_2.forEach((e, i) => {
                 outrang.innerHTML += `
-                    <div>
-                        ${i + 1}.<br>
-                        Kilométer: ${e.km}<br>
-                        Fogyasztás: ${e.uzemanyag} liter<br>
-                        Átlagfogyasztás: ${e.fogy.toFixed(2)} l/100km<br>
+                    <div class="rangsorolas__">
+                        <div class="rangsor__number">
+                            ${i + 1}.<br>
+                        </div>
+                        <div class="atl__fogy">
+                            Kilométer: ${e.km}<br>
+                            Fogyasztás: ${e.uzemanyag} liter<br>
+                            Átlagfogyasztás: ${e.fogy.toFixed(2)} l/100km<br>
+                        </div>
                     </div>
                 `;
             });
