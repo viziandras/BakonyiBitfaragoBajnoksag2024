@@ -18,6 +18,11 @@
     border-radius: 20px !important;
 }
 
+.card img {
+    width: 355.2px;
+    height: 355.2px;
+}
+
 .card__name {
     font-variant: small-caps;
     padding: 1rem 0rem;
